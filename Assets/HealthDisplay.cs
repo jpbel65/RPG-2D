@@ -68,7 +68,7 @@ public class HealthDisplay : MonoBehaviour {
     {
         if (dmg == true) timeCount++;
         if (timeCount == 0) GetComponent<SpriteRenderer>().color = new Color(0.5607843f, 0.7884067f, 1, 1);
-        if (timeCount == 50)
+        if (timeCount == 75)
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             dmg = false;
@@ -88,5 +88,14 @@ public class HealthDisplay : MonoBehaviour {
     void RestoreHealth()
     {
         health = maxHealth;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Monster")
+        {
+            Debug.Log("toucher: ");
+            takeDamage();
+        }
     }
 }

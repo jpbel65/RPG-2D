@@ -21,7 +21,7 @@ public class slash : MonoBehaviour
         if (collision.name != "Player")
         {
             Debug.Log("slash touch: " + collision.name);
-            collision.gameObject.SendMessage("TakeDamage", 20);
+            collision.gameObject.SendMessage("TakeDamage", 10);//slash double hit
         }
     }
 }
