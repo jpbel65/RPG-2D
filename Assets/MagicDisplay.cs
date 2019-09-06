@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//barre de sort UI
 public class MagicDisplay : MonoBehaviour {
 
-    public int Mana;
-    public int MaxMana;
-    public Image ActifSpell;
+    public int Mana;//mana du sort actif
+    public int MaxMana;//maximunh mana du sort actif
+    public Image actifSpellImage;//sprite du sort actif
     public Image ManaBar;
 
-    int usedSpell = 0;
+    int actif_spell = 0;
     List<Sprite> spellName = new List<Sprite>();
     List<int> spellUse = new List<int>();
     List<GameObject> spellObject = new List<GameObject>();
    
-    public GameObject Slash;
+    public GameObject Slash;//attack de melee par default
 
     // Use this for initialization
     void Start () {
-        spellName.Add(ActifSpell.sprite);
+        spellName.Add(actifSpellImage.sprite);
         spellUse.Add(Mana);
         spellObject.Add(Slash);
     }
@@ -27,18 +27,19 @@ public class MagicDisplay : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("c") && !PauseMenu.GameIsPaused && !Shop.GameInShop )
+        if (Input.GetKeyDown("c") && !PauseMenu.GameIsPaused && !Shop.GameInShop )//change de sort
         {
             Debug.Log("switch");
-            spellUse[usedSpell] = Mana;
-            usedSpell++;
-            if (usedSpell >= spellName.Count) usedSpell = 0;
-            Mana = spellUse[usedSpell];
+            spellUse[actif_spell] = Mana;
+            actif_spell++;
+            if (actif_spell >= spellName.Count) actif_spell = 0;
+            Mana = spellUse[actif_spell];
             ManaBar.fillAmount = Mana / 100f;
-            ActifSpell.sprite = spellName[usedSpell];
+            actifSpellImage.sprite = spellName[actif_spell];
         }
-        if (Input.GetKeyDown("x") && !PauseMenu.GameIsPaused && !Shop.GameInShop)
+        if (Input.GetKeyDown("x") && !PauseMenu.GameIsPaused && !Shop.GameInShop)//utilise le sort actif
         {
+            //debut création de l'angle de tire
             float angle = 0;
             Vector3 vMove = Vector3.down;
             string anim = GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name;
@@ -57,17 +58,17 @@ public class MagicDisplay : MonoBehaviour {
                 angle = 180;
                 vMove = Vector3.up;
             }
-
-            if (usedSpell == 0)
+            //fin création de l'angle de tire
+            if (actif_spell == 0)
             {
                 Debug.Log("Melee Slash");
-                Instantiate(Slash, gameObject.transform.position + (vMove / 2), Quaternion.AngleAxis(angle, Vector3.forward), transform);
+                Instantiate(Slash, gameObject.transform.position + (vMove / 2), Quaternion.AngleAxis(angle, Vector3.forward));
             }
             else
             {
                 if (Mana < 10) Debug.Log("not enough mana");
                 else { 
-                    Instantiate(spellObject[usedSpell], gameObject.transform.position + (vMove / 2), Quaternion.AngleAxis(angle, Vector3.forward));
+                    Instantiate(spellObject[actif_spell], gameObject.transform.position + (vMove / 2), Quaternion.AngleAxis(angle, Vector3.forward));
                     Mana = Mana - 10;
                     ManaBar.fillAmount = Mana / 100f;
                 }
@@ -75,14 +76,14 @@ public class MagicDisplay : MonoBehaviour {
         }
     }
 
-    void addSpell(ClassSort sort)
+    void addSpell(ClassSort sort)//ajoute le sort a la liste (grace souvent a reward)
     {
         spellName.Add(sort.get_sprite());
         spellUse.Add(sort.get_mana());
         spellObject.Add(sort.get_gameobject());
     }
 
-    void RestoreMana()
+    void RestoreMana()//restore tout le mana de la room
     {
         Mana = MaxMana;
         ManaBar.fillAmount = 1f;

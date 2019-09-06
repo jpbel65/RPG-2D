@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//sur une scene le script sert de téléportation pour le player
 public class OutPlace : MonoBehaviour
 {
-    public GameObject Destination;
-    public Vector3 Sens;
+    public GameObject Destination;//destination 
+    public Vector3 Sens;//déplacement pour éviter d'être dans le décor
 
     GameObject player;
 
@@ -31,6 +31,8 @@ public class OutPlace : MonoBehaviour
             StartCoroutine("MoveOut");
         }
     }
+
+    //element pour le futur genre des cutscene
     IEnumerator MoveIn()
     {
         //Time.timeScale = 0f;

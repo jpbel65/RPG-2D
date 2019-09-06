@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//script pour quiter le menu du shop
 public class Shop : MonoBehaviour
 {
     public static bool GameInShop = false;

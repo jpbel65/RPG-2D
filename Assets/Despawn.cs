@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Détuit tout les monstre encore en vie
 public class Despawn : MonoBehaviour
 {
     // Start is called before the first frame update

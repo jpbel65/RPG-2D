@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//UI de vente des items au tavernier
 public class ScrollShop : MonoBehaviour
 {
     public GameObject ItemContainer;
@@ -36,6 +36,7 @@ public class ScrollShop : MonoBehaviour
                     Destroy(ListChild[i].gameObject);
                     Destroy(listChildText[i].gameObject);
                     Coin.text = (int.Parse(Coin.text) + 1).ToString();
+                    Inventory.obj.RemoveAt(i);
                 }
 
             }

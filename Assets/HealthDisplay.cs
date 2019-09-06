@@ -11,12 +11,12 @@ public class HealthDisplay : MonoBehaviour {
     public int health = 40;
     public int maxHealth = 80;
 
-    public Image[] hearts;
-    public Sprite emptyHeart;
-    public Sprite QHeart;
-    public Sprite halfHeart;
-    public Sprite TQHeart;
-    public Sprite life;
+    public Image[] hearts;//images des coeurs
+    public Sprite emptyHeart;//coeur vide
+    public Sprite QHeart;//quart de coeur
+    public Sprite halfHeart;//demi coeur
+    public Sprite TQHeart;//3 quart de coeur
+    public Sprite life;//ceour plein
 
 	// Use this for initialization
 	void Start () {
@@ -37,12 +37,12 @@ public class HealthDisplay : MonoBehaviour {
             }
 
             int reste = health % 4;
-            if (reste != 0)
+            if (reste != 0)//gestion pour le dernier coeur 
             {
                 switch (reste)
                 {
                     case 1:
-                        hearts[health/4].sprite = QHeart;
+                        hearts[health / 4].sprite = QHeart;
                         break;
                     case 2:
                         hearts[health / 4].sprite = halfHeart;
@@ -66,6 +66,7 @@ public class HealthDisplay : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //debut frame invulnerabilité
         if (dmg == true) timeCount++;
         if (timeCount == 0) GetComponent<SpriteRenderer>().color = new Color(0.5607843f, 0.7884067f, 1, 1);
         if (timeCount == 75)
@@ -74,9 +75,10 @@ public class HealthDisplay : MonoBehaviour {
             dmg = false;
             timeCount = -1;
         }
+        //fin frame invulnerabilité
     }
 
-    public void takeDamage ()
+    public void takeDamage ()//player subit des dommages
     {
         if (dmg == false)
         {
@@ -85,14 +87,14 @@ public class HealthDisplay : MonoBehaviour {
         }
     }
 
-    void RestoreHealth()
+    void RestoreHealth()//restore tout la vie du player
     {
         health = maxHealth;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Monster")
+        if (collision.tag == "Monster")//si player touche monstre
         {
             Debug.Log("toucher: ");
             takeDamage();

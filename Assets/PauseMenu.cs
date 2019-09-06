@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//jeu en pause  activation du UI de l'inventaire
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;

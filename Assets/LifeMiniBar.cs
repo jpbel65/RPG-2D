@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LifeMiniBar : MonoBehaviour
+public class LifeMiniBar : MonoBehaviour//(Obselete)
 {
     public Image Life;
     public GameObject Bar;

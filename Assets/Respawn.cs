@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//respawn des monstres
 public class Respawn : MonoBehaviour
 {
     GameObject[] Spawner;
-    public List<GameObject> Monsters;
+    public List<GameObject> Monsters;//list de tous les monstres possible
 
     
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class Respawn : MonoBehaviour
                 Debug.Log(item.name);
                 if(Monster.tag == "Monster")
                 {
-                    Instantiate(Monster, item.transform);
+                    Instantiate(Monster, item.transform.position, Quaternion.identity);
                 }
             }
         }
