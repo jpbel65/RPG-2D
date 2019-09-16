@@ -1,7 +1,7 @@
 # Assets
 
 # Player
-Les composantes qui gére les déplacement du personnage ce trouve dans le dossier carater dans le script CMove.<br />
+Les composantes qui gèrent les déplacement du personnage ce trouve dans le dossier carater dans le script CMove.<br />
 Il conteint aussi les conditions pour changer les animations lors des déplacements.
 
 # Vie
@@ -15,3 +15,22 @@ Quand le joueur change de sort, il change l'objet ClassSort. le script s'appelle
 Il y a le script fireball qui est un exemple de sort que le personnage peut récupéré.
 
 # Monster
+Les monstres possède un script qui gére leurs points de vie et les objet qu'il laisse tomber.<br />
+Les monstres laisse tomber 1 des 3 objets predéfini qui possède un script loot pour gère les statistique de l
+'objet.<br />
+Chaque monstre possède une petite barre de vie qui indique au joueur les restants des points de vie du monstre.<br />
+Le script LifeMiniBar gère le concepte.<br />
+Les monstres apparaissent et disparaissent quand le joueur change d'endroit a l'aide du script OutPlace.<br />
+L'apparaissent et la disparaissent des monstres sont gérées par les scripts Respawn et Despawn
+
+# Équipement
+L'équipment du joueur est gère par les scripts équipement et Inventory.<br /> 
+Inventory contient tous les éléments que le joueur possède dans son sac tandis que équipement gère les objet équipé et les éléments qui compose le menu d'inventaire du joueur.
+
+# Shop
+Le script Shop permet l'acès au magasin de la taverne pour vide son Inventory en échange de pièce.<br />
+La fonction de vendre et de faire dérouler le menu dans le magasin est présente dans le script ShopScroll.
+
+# Intéraction
+Il y a des scripts qui permet l'intéraction avec certain élément comme ActionBut et ActionDoorAnd.<br />
+Il y a aussi le script Down qui est spécifique a un npc et qui possède certaine action selon l'état de l'animation du joueur.
